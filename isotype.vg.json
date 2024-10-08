@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"view": {"stroke": ""}},
+  "width": 500,
+  "height": 200,
+  "data": {
+    "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/isotype_methods_data.csv"
+  },
+  "transform": [
+    {
+      "calculate": "{'SPF': '🧴', 'Hat': '👒', 'Shade': '⛱️', 'Clothing': '👕', 'Sunglasses': '🕶️'}[datum.Protection_method]",
+      "as": "emoji"
+    },
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "groupby": ["Method", "Protection_method"]
+    }
+  ],
+  "mark": {"type": "text", "baseline": "middle"},
+  "encoding": {
+    "x": {"field": "rank", "type": "ordinal", "axis": null},
+    "y": {
+      "field": "Protection_method",
+      "type": "nominal",
+      "axis": null,
+      "sort": null
+    },
+    "row": {"field": "Method", "header": {"title": ""}},
+    "text": {"field": "emoji", "type": "nominal"},
+    "size": {"value": 35}
+  }
+}
