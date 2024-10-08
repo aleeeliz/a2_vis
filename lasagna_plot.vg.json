@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 100,
+  "data": {
+    "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/uv_level_2023_new_date_format.csv"
+  },
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "timeUnit": "yearmonthdate",
+      "field": "Date",
+      "type": "ordinal",
+      "title": "Time",
+      "axis": {
+        "format": "%b",
+        "labelAngle": 0,
+        "labelOverlap": false,
+        "labelColor": {
+          "condition": {
+            "test": {
+              "timeUnit": "date",
+              "field": "value",
+              "equal": {"date": 1}
+            },
+            "value": "black"
+          },
+          "value": null
+        },
+        "tickColor": {
+          "condition": {
+            "test": {
+              "timeUnit": "date",
+              "field": "value",
+              "equal": {"date": 1}
+            },
+            "value": "black"
+          },
+          "value": null
+        }
+      }
+    },
+    "color": {"field": "UV_level", "type": "quantitative", "title": "UV Level"}
+  },
+  "config": {}
+}
