@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"view": {"stroke": ""}},
+  "hconcat": [
+    {
+      "width": 400,
+      "height": 400,
+      "data": {
+        "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/yr5_spfhats.csv"
+      },
+      "transform": [
+        {"calculate": "ceil (datum.id/10)", "as": "row"},
+        {"calculate": "datum.id - datum.row*10", "as": "col"}
+      ],
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "x": {"field": "col", "type": "ordinal", "axis": null},
+        "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "-y"},
+        "shape": {"value": "square"},
+        "color": {
+          "condition": {"test": "datum.colour_in == 1", "value": "#f7bc00"},
+          "value": "lightgrey"
+        },
+        "size": {"value": 900},
+        "tooltip": [
+          {"field": "year_level", "type": "nominal", "title": "Year Level:"}
+        ]
+      }
+    },
+    {
+      "width": 400,
+      "height": 400,
+      "data": {
+        "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/yr8_spfhats.csv"
+      },
+      "transform": [
+        {"calculate": "ceil (datum.id/10)", "as": "row"},
+        {"calculate": "datum.id - datum.row*10", "as": "col"}
+      ],
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "x": {"field": "col", "type": "ordinal", "axis": null},
+        "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "-y"},
+        "shape": {"value": "square"},
+        "color": {
+          "condition": {"test": "datum.colour_in == 1", "value": "#f56300"},
+          "value": "lightgrey"
+        },
+        "size": {"value": 900},
+        "tooltip": [
+          {"field": "year_level", "type": "nominal", "title": "Year Level:"}
+        ]
+      }
+    },
+    {
+      "width": 400,
+      "height": 400,
+      "data": {
+        "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/yr11_spfhats.csv"
+      },
+      "transform": [
+        {"calculate": "ceil (datum.id/10)", "as": "row"},
+        {"calculate": "datum.id - datum.row*10", "as": "col"}
+      ],
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "x": {"field": "col", "type": "ordinal", "axis": null},
+        "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "-y"},
+        "shape": {"value": "square"},
+        "color": {
+          "condition": {"test": "datum.colour_in == 1", "value": "#a1083b"},
+          "value": "lightgrey"
+        },
+        "size": {"value": 900},
+        "tooltip": [
+          {"field": "year_level", "type": "nominal", "title": "Year Level:"}
+        ]
+      }
+    }
+  ]
+}
