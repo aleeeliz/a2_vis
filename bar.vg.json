@@ -9,6 +9,7 @@
   "params": [
     {
       "name": "gender_select",
+      "value": "M",
       "bind": {
         "input": "select",
         "options": ["M", "F"],
