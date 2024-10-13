@@ -4,7 +4,7 @@
   "width": 500,
   "height": 200,
   "data": {
-    "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/isotype_methods_data.csv"
+    "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/isotype_protection_methods_data.csv"
   },
   "transform": [
     {
@@ -22,10 +22,10 @@
     "y": {
       "field": "Protection_method",
       "type": "nominal",
-      "axis": null,
-      "sort": null
+      "sort": null,
+      "title": "Protection Method"
     },
-    "row": {"field": "Method", "header": {"title": ""}},
+    "row": {"field": "Method", "header": {"title": "", "labels": false}},
     "text": {"field": "emoji", "type": "nominal"},
     "size": {"value": 35}
   }
