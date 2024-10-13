@@ -1,0 +1,21 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 200,
+  "description": "Stock prices of 5 Tech Companies over Time.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/days_of_week_sensitivity.csv"
+  },
+  "mark": {"type": "line", "point": {"filled": false, "fill": "white"}},
+  "encoding": {
+    "x": {"field": "day_of_week", "sort": null},
+    "y": {"field": "percentage", "type": "quantitative"},
+    "color": {
+      "field": "sensitivity",
+      "type": "nominal",
+      "scale": {"range": ["#f7bc00", "#f56300", "#a1083b", "#53579c"]},
+      "legend": null
+    }
+  },
+  "config": {}
+}
