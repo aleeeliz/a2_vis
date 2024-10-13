@@ -24,12 +24,18 @@
   "mark": "bar",
   "encoding": {
     "x": {"field": "age", "type": "nominal", "title": "Age group"},
-    "y": {"field": "spf", "type": "quantitative", "title": "% of people"},
+    "y": {
+      "field": "spf",
+      "type": "quantitative",
+      "title": "% of people",
+      "scale": {"domain": [0, 100]}
+    },
+    "color": {"value": "#f7bc00"},
     "tooltip": [
       {"field": "age", "type": "nominal", "title": "Age"},
       {"field": "gender", "type": "nominal", "title": "Gender"},
       {"field": "spf", "type": "quantitative", "title": "% of people"}
     ]
   },
-  "config": {}
+  "config": {"axis": {"grid": false}}
 }
