@@ -1,0 +1,226 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/uv_level_2023_new_date_format_cities_up.csv"
+  },
+  "params": [
+    {
+      "name": "city_select",
+      "value": "Melb",
+      "bind": {
+        "input": "select",
+        "options": ["Melb", "Syd", "Can", "Bri", "Ade", "Dar", "Per", "King"],
+        "labels": [
+          "Melbourne",
+          "Sydney",
+          "Canbera",
+          "Brisbane",
+          "Adelaide",
+          "Darwin",
+          "Perth",
+          "Kingston"
+        ],
+        "name": "City Selection:"
+      }
+    }
+  ],
+  "vconcat": [
+    {
+      "width": 500,
+      "height": 500,
+      "projection": {"type": "mercator"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/aleeeliz/w9_hw/refs/heads/main/ne_10m.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "ne_10m_admin_1_states_provinces"
+            }
+          },
+          "mark": {"type": "geoshape", "fill": "#ffc067", "stroke": "white"}
+        },
+        {
+          "transform": [{"filter": {"param": "brush"}}],
+          "layer": [
+            {
+              "mark": {"type": "circle"},
+              "encoding": {
+                "longitude": {"field": "Lon", "type": "quantitative"},
+                "latitude": {"field": "Lat", "type": "quantitative"},
+                "size": {"aggregate": "average", "field": "UV_level"},
+                "color": {"value": "#ff6701"},
+                "tooltip": [
+                  {
+                    "field": "UV_level",
+                    "aggregate": "average",
+                    "type": "quantitative",
+                    "format": ".2f",
+                    "title": "Average UV Level"
+                  },
+                  {"field": "Name", "type": "nominal"}
+                ]
+              }
+            },
+            {
+              "transform": [
+                {
+                  "aggregate": [
+                    {"op": "average", "field": "UV_level", "as": "avg_UV_level"}
+                  ],
+                  "groupby": ["Name", "Lon", "Lat"]
+                },
+                {
+                  "window": [{"op": "rank", "as": "ranking"}],
+                  "sort": [{"field": "avg_UV_level", "order": "descending"}]
+                },
+                {"filter": "datum.ranking == 1"},
+                {
+                  "calculate": "'City with highest average UV level:; ' + format(datum['avg_UV_level'], '.2f') ",
+                  "as": "text_annotation_raw"
+                },
+                {
+                  "calculate": "split(datum.text_annotation_raw, ';')",
+                  "as": "text_annotation"
+                }
+              ],
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "dx": -8,
+                "dy": -8,
+                "baseline": "middle",
+                "fontStyle": "italic"
+              },
+              "encoding": {
+                "text": {"field": "text_annotation"},
+                "longitude": {"field": "Lon", "type": "quantitative"},
+                "latitude": {"field": "Lat", "type": "quantitative"}
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/aleeeliz/w9_hw/refs/heads/main/ne_10m.topojson",
+            "format": {"type": "topojson", "feature": "ne_10m_graticules_30"}
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": null,
+            "stroke": "lightgray",
+            "opacity": 0.4
+          }
+        }
+      ]
+    },
+    {
+      "width": 500,
+      "height": 200,
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "scale": {"domain": {"param": "brush"}}
+        },
+        "y": {"field": "UV_level", "type": "quantitative"},
+        "color": {
+          "condition": {
+            "test": "datum.Name == city_select",
+            "field": "Name",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Melb",
+                "Syd",
+                "Can",
+                "Bri",
+                "Ade",
+                "Dar",
+                "Per",
+                "King"
+              ],
+              "range": [
+                "#FF5733",
+                "#33FF57",
+                "#3357FF",
+                "#F333FF",
+                "#FF33A1",
+                "#FFC300",
+                "#DAF7A6",
+                "#581845"
+              ]
+            },
+            "legend": null
+          },
+          "value": "lightgray",
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.Name == city_select",
+            "field": "Name",
+            "type": "nominal",
+            "scale": {"domain": [1, 1]},
+            "legend": null
+          },
+          "value": 0.2
+        }
+      }
+    },
+    {
+      "width": 500,
+      "height": 100,
+      "transform": [
+        {"filter": "city_select == null || datum.Name == city_select"}
+      ],
+      "mark": "rect",
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+      ],
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonthdate",
+          "field": "Date",
+          "type": "temporal",
+          "title": "Time",
+          "axis": {
+            "format": "%b",
+            "labelAngle": 0,
+            "labelOverlap": false,
+            "labelColor": {
+              "condition": {
+                "test": {
+                  "timeUnit": "date",
+                  "field": "value",
+                  "equal": {"date": 1}
+                },
+                "value": "black"
+              },
+              "value": null
+            },
+            "tickColor": {
+              "condition": {
+                "test": {
+                  "timeUnit": "date",
+                  "field": "value",
+                  "equal": {"date": 1}
+                },
+                "value": "black"
+              },
+              "value": null
+            }
+          }
+        },
+        "color": {
+          "field": "UV_level",
+          "type": "quantitative",
+          "title": "UV Level",
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {}
+}
