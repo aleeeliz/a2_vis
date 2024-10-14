@@ -3,6 +3,9 @@
   "data": {
     "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/uv_level_2023_new_date_format_cities_up.csv"
   },
+  "transform": [
+    {"calculate": "{'Melb': 'Melbourne', 'Syd': 'Sydney', 'Per':'Perth','Can':'Canberra','King':'Kingston','Bri':'Brisbane','Ade':'Adelaide', 'Dar': 'Darwin'}[datum.Name]", "as": "Name_Full"}
+  ],
   "params": [
     {
       "name": "city_select",
@@ -13,7 +16,7 @@
         "labels": [
           "Melbourne",
           "Sydney",
-          "Canbera",
+          "Canberra",
           "Brisbane",
           "Adelaide",
           "Darwin",
@@ -58,7 +61,7 @@
                     "format": ".2f",
                     "title": "Average UV Level"
                   },
-                  {"field": "Name", "type": "nominal"}
+                  {"field": "Name_Full", "type": "nominal", "title": "City Name:"}
                 ]
               }
             },
@@ -222,5 +225,7 @@
       }
     }
   ],
-  "config": {}
+  "config": {
+    "legend": {"orient": "top", "layout": {"top": {"anchor": "middle"}}}
+  }
 }

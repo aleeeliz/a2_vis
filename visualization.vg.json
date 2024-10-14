@@ -55,5 +55,8 @@
         "opacity": 0.4
       }
     }
-  ]
+  ],
+  "config": {
+    "background":"#fff4df"
+  }
 }
