@@ -38,5 +38,8 @@
       {"field": "spf", "type": "quantitative", "title": "% of people"}
     ]
   },
-  "config": {"view": {"stroke": null}, "axis": {"grid": false}}
+  "config": {
+    "view": {"stroke": null}, 
+    "axis": {"grid": false}, 
+    "background": "#fff4df"}
 }

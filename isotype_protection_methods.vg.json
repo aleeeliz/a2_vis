@@ -28,5 +28,8 @@
     "row": {"field": "Method", "header": {"title": "", "labels": false}},
     "text": {"field": "emoji", "type": "nominal"},
     "size": {"value": 35}
+  },
+  "config":{
+    "background": "#fff4df"
   }
 }

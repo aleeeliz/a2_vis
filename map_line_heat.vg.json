@@ -226,6 +226,7 @@
     }
   ],
   "config": {
-    "legend": {"orient": "top", "layout": {"top": {"anchor": "middle"}}}
+    "legend": {"orient": "top", "layout": {"top": {"anchor": "middle"}}},
+    "background": "#fff4df"
   }
 }

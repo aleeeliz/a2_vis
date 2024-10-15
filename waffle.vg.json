@@ -3,8 +3,8 @@
   "config": {"view": {"stroke": ""}},
   "hconcat": [
     {
-      "width": 400,
-      "height": 400,
+      "width": 300,
+      "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/yr5_spfhats.csv"
       },
@@ -21,15 +21,15 @@
           "condition": {"test": "datum.colour_in == 1", "value": "#f7bc00"},
           "value": "lightgrey"
         },
-        "size": {"value": 900},
+        "size": {"value": 500},
         "tooltip": [
           {"field": "year_level", "type": "nominal", "title": "Year Level:"}
         ]
       }
     },
     {
-      "width": 400,
-      "height": 400,
+      "width": 300,
+      "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/yr8_spfhats.csv"
       },
@@ -46,15 +46,15 @@
           "condition": {"test": "datum.colour_in == 1", "value": "#f56300"},
           "value": "lightgrey"
         },
-        "size": {"value": 900},
+        "size": {"value": 500},
         "tooltip": [
           {"field": "year_level", "type": "nominal", "title": "Year Level:"}
         ]
       }
     },
     {
-      "width": 400,
-      "height": 400,
+      "width": 300,
+      "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/yr11_spfhats.csv"
       },
@@ -71,11 +71,14 @@
           "condition": {"test": "datum.colour_in == 1", "value": "#a1083b"},
           "value": "lightgrey"
         },
-        "size": {"value": 900},
+        "size": {"value": 500},
         "tooltip": [
           {"field": "year_level", "type": "nominal", "title": "Year Level:"}
         ]
       }
     }
-  ]
+  ],
+  "config": {
+    "background": "#fff4df"
+  }
 }

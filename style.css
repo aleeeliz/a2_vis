@@ -1,12 +1,51 @@
-body {
+.outer-container{
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
   background-color: #fff4df;
 }
-.container {
+
+.container-page{
+  width: 1000px;
+  height: 2600px;
+  background-color: #fff4df;
+}
+
+.container-donut{
+  margin: 5%;
+  color: black;
+}
+
+.container-line{
+  margin: 10%;
+  color: black;
+}
+
+.container-map-line-heat{
+  margin-left: 20%;
+  margin-top: 5%;
+  color: black;
+}
+
+.container-waffle{
+  margin-top: 5%;
+  color: black;
+}
+
+.container-bar {
+    margin-top: 5%;
     position: relative;
     text-align: center;
     color: black;
   }
-  
+
+.container-iso {
+    margin-top: 5%;
+    color: black;
+  }
+
 .top-right {
     position: absolute;
     top: 60px;
@@ -23,12 +62,4 @@ body {
   margin-left: 50px;
   margin-right: 50px;
   margin-bottom: 30px;
-}
-
-#lasagna{
-  margin-left: 200px;
-}
-
-.pure-u-1-2 {
-  margin-top: 30px;
 }

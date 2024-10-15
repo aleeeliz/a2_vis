@@ -17,5 +17,7 @@
       "legend": null
     }
   },
-  "config": {}
+  "config": {
+    "background": "#fff4df"
+  }
 }

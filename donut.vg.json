@@ -1,42 +1,24 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "A simple donut chart with embedded data.",
-  "hconcat": [
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/sunburn_sensitivity.csv"
-      },
-      "mark": {"type": "arc", "innerRadius": 50},
-      "encoding": {
-        "theta": {"field": "count", "type": "quantitative"},
-        "color": {
-          "field": "sensitivity",
-          "type": "nominal",
-          "scale": {"range": ["#f7bc00", "#f56300", "#a1083b", "#53579c"]}
-        },
-        "tooltip": [
-          {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level:"},
-          {"field": "count", "type": "quantitative", "title": "Count:"}]
-      }
+  "width": 200,
+  "height": 200,
+  "data": {
+    "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/sunburn_sensitivity.csv"
+  },
+  "mark": {"type": "arc", "innerRadius": 50},
+  "encoding": {
+    "theta": {"field": "count", "type": "quantitative"},
+    "color": {
+      "field": "sensitivity",
+      "type": "nominal",
+      "scale": {"range": ["#f7bc00", "#f56300", "#a1083b", "#53579c"]},
+      "legend": null
     },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/suntan_sensitivity1.csv"
-      },
-      "mark": {"type": "arc", "innerRadius": 50},
-      "encoding": {
-        "theta": {"field": "count", "type": "quantitative"},
-        "color": {
-          "field": "sensitivity",
-          "type": "nominal",
-          "legend": null,
-          "scale": {"range": ["#f7bc00", "#f56300", "#a1083b", "#53579c"]}
-        },
-        "tooltip": [
-          {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level:"},
-          {"field": "count", "type": "quantitative", "title": "Count:"}]
-      }
-    }
-  ],
-  "config": {}
+    "tooltip": [
+      {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level:"},
+      {"field": "count", "type": "quantitative", "title": "Count:"}]
+  },
+  "config": {
+    "background": "#fff4df"
+  }
 }
