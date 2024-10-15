@@ -15,11 +15,7 @@
       "type": "nominal",
       "scale": {"range": ["#f7bc00", "#f56300", "#a1083b", "#53579c"]},
       "legend": {"title": "Sun sensitivity after 30 mins"}
-    }, 
-    "tooltip": [
-      {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level"}, 
-      {"field": "percentage", "type": "quantitative", "title": "Percentage of people"}
-    ]
+    }
   },
   "config": {
     "background": "#fff4df",
