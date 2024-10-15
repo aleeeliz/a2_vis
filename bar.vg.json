@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 400,
+  "width": 435,
   "height": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/aleeeliz/hw_w10/refs/heads/main/data3.csv"
@@ -23,7 +23,7 @@
   ],
   "mark": "bar",
   "encoding": {
-    "x": {"field": "age", "type": "nominal", "title": "Age group"},
+    "x": {"field": "age", "type": "nominal", "title": "Age group", "axis":{"labelAngle":0}},
     "y": {
       "field": "spf",
       "type": "quantitative",

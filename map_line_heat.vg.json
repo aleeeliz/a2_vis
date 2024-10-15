@@ -31,6 +31,7 @@
     {
       "hconcat": [
           {
+          "title": "Average daily UV level",
           "width": 450,
           "height": 325,
           "projection": {"type": "mercator"},
@@ -120,6 +121,7 @@
           ]
         },
         {
+          "title": "Daily UV level",
           "width": 450,
           "height": 325,
           "mark": "line",

@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 400,
-  "height": 200,
+  "height": 250,
   "description": "Stock prices of 5 Tech Companies over Time.",
   "data": {
     "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/days_of_week_sensitivity.csv"
   },
-  "mark": {"type": "line", "point": {"filled": false, "fill": "white"}},
+  "mark": {"type": "line", "point": {"filled": "true"}},
   "encoding": {
     "x": {"field": "day_of_week", "sort": null, "axis":{"labelAngle":0}, "title": "Day of week"},
     "y": {"field": "percentage", "type": "quantitative", "title": "Percentage of people"},
@@ -14,7 +14,7 @@
       "field": "sensitivity",
       "type": "nominal",
       "scale": {"range": ["#f7bc00", "#f56300", "#a1083b", "#53579c"]},
-      "legend": null
+      "legend": {"title": "Sun sensitivity after 30 mins"}
     }, 
     "tooltip": [
       {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level"}, 
@@ -23,6 +23,8 @@
   },
   "config": {
     "background": "#fff4df",
-    "view": {"stroke": null}
+    "view": {"stroke": null},
+    "legend": {"orient": "bottom-left", "layout": {"bottom-left": {"anchor": "middle"}}}
+
   }
 }
