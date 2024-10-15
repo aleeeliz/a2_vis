@@ -1,3 +1,7 @@
+.roboto-slab {
+  font-family: "Roboto Slab", serif;
+}
+
 .outer-container{
   width: auto;
   height: auto;
@@ -38,8 +42,18 @@
 }
 
 .container-waffle{
-  margin-left: 2%;
+  margin-left: 2.5%;
   color: black;
+}
+
+.yr5-text{
+  position: absolute;
+  left: 158px;
+}
+
+.yr11-text{
+  position: absolute;
+  right: 155px;
 }
 
 .container-bar {
@@ -73,18 +87,27 @@ h1 {
     text-align: center;
     color: #ff8d21;
     font-size: 40px;
+    font-family: "Roboto Slab";
 }
 
 h3{
   text-align: center;
+  font-family: "Roboto Slab";
+}
+
+h4{
+  text-align: center;
+  font-family: "Roboto Slab";
 }
 
 h5{
   text-align: center;
+  font-family: "Roboto Slab";
 }
 
 p{
   text-align: center;
+  font-family: "Roboto Slab";
 }
 
 .square-line {
