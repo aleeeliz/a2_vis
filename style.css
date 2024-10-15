@@ -185,11 +185,11 @@ p{
 }
 
 .square-line {
-  height: 255px;
+  height: 250px;
   width: 95px;
   background-color: #ff8d21;
   position: absolute;
   opacity: 0.3;
-  top: 238px;
+  top: 242px;
   right: 65px;
 }
