@@ -68,7 +68,7 @@
         "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "-y"},
         "shape": {"value": "square"},
         "color": {
-          "condition": {"test": "datum.colour_in == 1", "value": "#84029c"},
+          "condition": {"test": "datum.colour_in == 1", "value": "#660033"},
           "value": "lightgrey"
         },
         "size": {"value": 500},

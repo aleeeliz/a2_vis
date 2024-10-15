@@ -177,7 +177,7 @@
       ]
     },
     {
-      "width": 980,
+      "width": 988,
       "height": 50,
       "transform": [
         {"filter": "city_select == null || datum.Name == city_select"}
