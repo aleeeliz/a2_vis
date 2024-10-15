@@ -12,7 +12,7 @@
 
 .container-page{
   width: 1000px;
-  height: 3000px;
+  height: 2800px;
   position: relative;
   background-color: #fff4df;
 }
@@ -79,11 +79,18 @@
 }
 
 .container-bar {
-  margin-top: 5%;
+    margin-top: 5%;
     position: relative;
     text-align: center;
     color: black;
   }
+
+.bar-annotation-1{
+    position: absolute;
+    font-size: smaller;
+    bottom: 400px;
+    right: 80px;
+}
 
 .container-iso {
     margin-top: 5%;
