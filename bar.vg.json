@@ -33,7 +33,6 @@
     "color": {"value": "#fa9107"},
     "tooltip": [
       {"field": "age", "type": "nominal", "title": "Age"},
-      {"field": "gender", "type": "nominal", "title": "Gender"},
       {"field": "spf", "type": "quantitative", "title": "% of people"}
     ]
   },
