@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "config": {"view": {"stroke": ""}},
-  "width": 500,
+  "width": 400,
   "height": 200,
   "data": {
     "url": "https://raw.githubusercontent.com/aleeeliz/a2_vis/refs/heads/main/isotype_protection_methods_data.csv"
@@ -30,6 +30,7 @@
     "size": {"value": 35}
   },
   "config":{
-    "background": "#fff4df"
+    "background": "#fff4df",
+    "view": {"stroke": null}
   }
 }

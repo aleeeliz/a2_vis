@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "% of People who wear SPF30+ by Gender and Age",
   "width": 400,
-  "height": 400,
+  "height": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/aleeeliz/hw_w10/refs/heads/main/data3.csv"
   },
@@ -29,9 +29,9 @@
       "field": "spf",
       "type": "quantitative",
       "title": "% of people",
-      "scale": {"domain": [0, 100]}
+      "scale": {"domain": [0, 70]}
     },
-    "color": {"value": "#f7bc00"},
+    "color": {"value": "#fa9107"},
     "tooltip": [
       {"field": "age", "type": "nominal", "title": "Age"},
       {"field": "gender", "type": "nominal", "title": "Gender"},

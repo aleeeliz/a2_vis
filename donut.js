@@ -1,2 +1,2 @@
 var vg_1 = "donut.vg.json";
-vegaEmbed("#donut", vg_1);
+vegaEmbed("#donut", vg_1, {"actions": false});

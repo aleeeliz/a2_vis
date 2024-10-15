@@ -8,16 +8,21 @@
   },
   "mark": {"type": "line", "point": {"filled": false, "fill": "white"}},
   "encoding": {
-    "x": {"field": "day_of_week", "sort": null},
-    "y": {"field": "percentage", "type": "quantitative"},
+    "x": {"field": "day_of_week", "sort": null, "axis":{"labelAngle":0}, "title": "Day of week"},
+    "y": {"field": "percentage", "type": "quantitative", "title": "Percentage of people"},
     "color": {
       "field": "sensitivity",
       "type": "nominal",
       "scale": {"range": ["#f7bc00", "#f56300", "#a1083b", "#53579c"]},
       "legend": null
-    }
+    }, 
+    "tooltip": [
+      {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level"}, 
+      {"field": "percentage", "type": "quantitative", "title": "Percentage of people"}
+    ]
   },
   "config": {
-    "background": "#fff4df"
+    "background": "#fff4df",
+    "view": {"stroke": null}
   }
 }

@@ -15,10 +15,11 @@
       "legend": null
     },
     "tooltip": [
-      {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level:"},
-      {"field": "count", "type": "quantitative", "title": "Count:"}]
+      {"field": "sensitivity", "type": "nominal", "title": "Sensitivity Level"},
+      {"field": "count", "type": "quantitative", "title": "Count"}]
   },
   "config": {
-    "background": "#fff4df"
+    "background": "#fff4df",
+    "view": {"stroke": null}
   }
 }

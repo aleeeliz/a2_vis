@@ -29,152 +29,156 @@
   ],
   "vconcat": [
     {
-      "width": 500,
-      "height": 500,
-      "projection": {"type": "mercator"},
-      "layer": [
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/aleeeliz/w9_hw/refs/heads/main/ne_10m.topojson",
-            "format": {
-              "type": "topojson",
-              "feature": "ne_10m_admin_1_states_provinces"
-            }
-          },
-          "mark": {"type": "geoshape", "fill": "#ffc067", "stroke": "white"}
-        },
-        {
-          "transform": [{"filter": {"param": "brush"}}],
+      "hconcat": [
+          {
+          "width": 450,
+          "height": 325,
+          "projection": {"type": "mercator"},
           "layer": [
             {
-              "mark": {"type": "circle"},
-              "encoding": {
-                "longitude": {"field": "Lon", "type": "quantitative"},
-                "latitude": {"field": "Lat", "type": "quantitative"},
-                "size": {"aggregate": "average", "field": "UV_level"},
-                "color": {"value": "#ff6701"},
-                "tooltip": [
-                  {
-                    "field": "UV_level",
-                    "aggregate": "average",
-                    "type": "quantitative",
-                    "format": ".2f",
-                    "title": "Average UV Level"
-                  },
-                  {"field": "Name_Full", "type": "nominal", "title": "City Name:"}
-                ]
-              }
+              "data": {
+                "url": "https://raw.githubusercontent.com/aleeeliz/w9_hw/refs/heads/main/ne_10m.topojson",
+                "format": {
+                  "type": "topojson",
+                  "feature": "ne_10m_admin_1_states_provinces"
+                }
+              },
+              "mark": {"type": "geoshape", "fill": "#ffc067", "stroke": "white"}
             },
             {
-              "transform": [
+              "transform": [{"filter": {"param": "brush"}}],
+              "layer": [
                 {
-                  "aggregate": [
-                    {"op": "average", "field": "UV_level", "as": "avg_UV_level"}
+                  "mark": {"type": "circle"},
+                  "encoding": {
+                    "longitude": {"field": "Lon", "type": "quantitative"},
+                    "latitude": {"field": "Lat", "type": "quantitative"},
+                    "size": {"aggregate": "average", "field": "UV_level", "legend": {"title":null}},
+                    "color": {"value": "#ff6701"},
+                    "tooltip": [
+                      {
+                        "field": "UV_level",
+                        "aggregate": "average",
+                        "type": "quantitative",
+                        "format": ".2f",
+                        "title": "Average UV Level"
+                      },
+                      {"field": "Name_Full", "type": "nominal", "title": "City Name"}
+                    ]
+                  }
+                },
+                {
+                  "transform": [
+                    {
+                      "aggregate": [
+                        {"op": "average", "field": "UV_level", "as": "avg_UV_level"}
+                      ],
+                      "groupby": ["Name", "Name_Full", "Lon", "Lat"]
+                    },
+                    {
+                      "window": [{"op": "rank", "as": "ranking"}],
+                      "sort": [{"field": "avg_UV_level", "order": "descending"}]
+                    },
+                    {"filter": "datum.ranking == 1"},
+                    {
+                      "calculate": " datum['Name_Full'] + ' had highest average UV level; for selected period with ' + format(datum['avg_UV_level'], '.2f') ",
+                      "as": "text_annotation_raw"
+                    },
+                    {
+                      "calculate": "split(datum.text_annotation_raw, ';')",
+                      "as": "text_annotation"
+                    }
                   ],
-                  "groupby": ["Name", "Lon", "Lat"]
-                },
-                {
-                  "window": [{"op": "rank", "as": "ranking"}],
-                  "sort": [{"field": "avg_UV_level", "order": "descending"}]
-                },
-                {"filter": "datum.ranking == 1"},
-                {
-                  "calculate": "'City with highest average UV level:; ' + format(datum['avg_UV_level'], '.2f') ",
-                  "as": "text_annotation_raw"
-                },
-                {
-                  "calculate": "split(datum.text_annotation_raw, ';')",
-                  "as": "text_annotation"
+                  "mark": {
+                    "type": "text",
+                    "align": "left",
+                    "dx": 10,
+                    "dy": -8,
+                    "baseline": "middle",
+                    "fontStyle": "italic"
+                  },
+                  "encoding": {
+                    "text": {"field": "text_annotation"},
+                    "longitude": {"field": "Lon", "type": "quantitative"},
+                    "latitude": {"field": "Lat", "type": "quantitative"}
+                  }
                 }
-              ],
-              "mark": {
-                "type": "text",
-                "align": "right",
-                "dx": -8,
-                "dy": -8,
-                "baseline": "middle",
-                "fontStyle": "italic"
+              ]
+            },
+            {
+              "data": {
+                "url": "https://raw.githubusercontent.com/aleeeliz/w9_hw/refs/heads/main/ne_10m.topojson",
+                "format": {"type": "topojson", "feature": "ne_10m_graticules_30"}
               },
-              "encoding": {
-                "text": {"field": "text_annotation"},
-                "longitude": {"field": "Lon", "type": "quantitative"},
-                "latitude": {"field": "Lat", "type": "quantitative"}
+              "mark": {
+                "type": "geoshape",
+                "fill": null,
+                "stroke": "lightgray",
+                "opacity": 0.4
               }
             }
           ]
         },
         {
-          "data": {
-            "url": "https://raw.githubusercontent.com/aleeeliz/w9_hw/refs/heads/main/ne_10m.topojson",
-            "format": {"type": "topojson", "feature": "ne_10m_graticules_30"}
-          },
-          "mark": {
-            "type": "geoshape",
-            "fill": null,
-            "stroke": "lightgray",
-            "opacity": 0.4
+          "width": 450,
+          "height": 325,
+          "mark": "line",
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "scale": {"domain": {"param": "brush"}}
+            },
+            "y": {"field": "UV_level", "type": "quantitative", "title": "UV level"},
+            "color": {
+              "condition": {
+                "test": "datum.Name == city_select",
+                "field": "Name",
+                "type": "nominal",
+                "scale": {
+                  "domain": [
+                    "Melb",
+                    "Syd",
+                    "Can",
+                    "Bri",
+                    "Ade",
+                    "Dar",
+                    "Per",
+                    "King"
+                  ],
+                  "range": [
+                    "#ff8b17",
+                    "#ff7c52",
+                    "#1c246c",
+                    "#f7ad19",
+                    "#f37413",
+                    "#ff4f1f",
+                    "#5c3566",
+                    "#a44b10"
+                  ]
+                },
+                "legend": null
+              },
+              "value": "lightgray",
+              "legend": null
+            },
+            "opacity": {
+              "condition": {
+                "test": "datum.Name == city_select",
+                "field": "Name",
+                "type": "nominal",
+                "scale": {"domain": [1, 1]},
+                "legend": null
+              },
+              "value": 0.2
+            }
           }
         }
       ]
     },
     {
-      "width": 500,
-      "height": 200,
-      "mark": "line",
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal",
-          "scale": {"domain": {"param": "brush"}}
-        },
-        "y": {"field": "UV_level", "type": "quantitative"},
-        "color": {
-          "condition": {
-            "test": "datum.Name == city_select",
-            "field": "Name",
-            "type": "nominal",
-            "scale": {
-              "domain": [
-                "Melb",
-                "Syd",
-                "Can",
-                "Bri",
-                "Ade",
-                "Dar",
-                "Per",
-                "King"
-              ],
-              "range": [
-                "#FF5733",
-                "#33FF57",
-                "#3357FF",
-                "#F333FF",
-                "#FF33A1",
-                "#FFC300",
-                "#DAF7A6",
-                "#581845"
-              ]
-            },
-            "legend": null
-          },
-          "value": "lightgray",
-          "legend": null
-        },
-        "opacity": {
-          "condition": {
-            "test": "datum.Name == city_select",
-            "field": "Name",
-            "type": "nominal",
-            "scale": {"domain": [1, 1]},
-            "legend": null
-          },
-          "value": 0.2
-        }
-      }
-    },
-    {
-      "width": 500,
-      "height": 100,
+      "width": 980,
+      "height": 50,
       "transform": [
         {"filter": "city_select == null || datum.Name == city_select"}
       ],
@@ -219,14 +223,15 @@
         "color": {
           "field": "UV_level",
           "type": "quantitative",
-          "title": "UV Level",
-          "legend": null
+          "legend": null,
+          "scale": {"scheme":"yelloworangebrown"}
         }
       }
     }
   ],
   "config": {
     "legend": {"orient": "top", "layout": {"top": {"anchor": "middle"}}},
+    "view": {"stroke": null},
     "background": "#fff4df"
   }
 }
